@@ -1,7 +1,6 @@
 import {type FC, type ReactNode, useEffect, useState} from "react";
-import {FireworksRenderer} from "./fireworksRenderer/fireworksRenderer.ts";
 import './fireworksAndConfettiComponent.css'
-import {DebugConfettiRenderer} from "./confettiRenderer/debugConfettiRenderer.ts";
+import {FireworksAndConfettiRenderer} from "./fireworksAndConfettiRenderer.ts";
 
 interface IFireworksAndConfettiComponentProps {
     children: ReactNode;
@@ -24,13 +23,9 @@ const FireworksAndConfettiComponent: FC<IFireworksAndConfettiComponentProps> = (
 
             const canvas = document.getElementById('fireworks') as HTMLCanvasElement;
             const context = initializeCanvasContext(canvas);
-            // const fireworksRenderer = new FireworksRenderer(canvas!, context);
-            //
-            // fireworksRenderer.animate();
-            
-            const debugConfettiRenderer = new DebugConfettiRenderer(canvas, context);
-            
-            debugConfettiRenderer.animate();
+            const renderer = new FireworksAndConfettiRenderer(canvas!, context);
+
+            renderer.animate();
         } 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
