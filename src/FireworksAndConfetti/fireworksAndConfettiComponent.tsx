@@ -1,12 +1,12 @@
-import {useEffect, useState, FC} from "react";
+import {type FC, type ReactNode, useEffect, useState} from "react";
 import {FireworksRenderer} from "./fireworksRenderer/fireworksRenderer.ts";
-import './fireworksComponent.css'
+import './fireworksAndConfettiComponent.css'
 
-interface FireworksComponentProps {
-    children: JSX.Element;
+interface IFireworksAndConfettiComponentProps {
+    children: ReactNode;
 }
 
-const FireworksComponent:FC<FireworksComponentProps> = ({children}) => {
+const FireworksAndConfettiComponent: FC<IFireworksAndConfettiComponentProps> = ({children}: IFireworksAndConfettiComponentProps) => {
     const [fireworksInitialized, setFireworksInitialized] = useState(false);
 
     useEffect(() => {
@@ -29,4 +29,4 @@ const FireworksComponent:FC<FireworksComponentProps> = ({children}) => {
     );
 };
 
-export default FireworksComponent;
+export default FireworksAndConfettiComponent;
