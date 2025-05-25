@@ -6,11 +6,13 @@ export class Particle {
     velocity: { x: number; y: number };
     alpha: number;
     friction: number;
+    coordinates: Array<{x: number; y: number}>;
     
     constructor (x:number, y:number, color: string, context: CanvasRenderingContext2D) {
         this.context = context;
         this.x = x;
         this.y = y;
+        this.coordinates = [{x: this.x, y: this.y}];
         this.color = color;
         this.velocity = {
             x:(Math.random()-0.5)*8, 
@@ -23,7 +25,9 @@ export class Particle {
     draw() {
         this.context.globalAlpha = this.alpha;
         this.context.beginPath();
-        this.context.arc(this.x, this.y, 2, 0, Math.PI*2, false);
+        this.coordinates.forEach(coordinate => {
+            this.context.arc(coordinate.x, coordinate.y, 2, 0, Math.PI*2, false);    
+        });
         this.context.fillStyle = this.color;
         this.context.fill();
     }
@@ -34,5 +38,10 @@ export class Particle {
         this.x += this.velocity.x;
         this.y += this.velocity.y;
         this.alpha -= 0.01;
+        this.coordinates.push({x: this.x, y: this.y});
+        
+        if(this.coordinates.length > 10) {
+            this.coordinates.shift();
+        }
     }
 }
