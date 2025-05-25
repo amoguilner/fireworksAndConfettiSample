@@ -48,6 +48,7 @@ export class Confetti {
     
     draw() {
         this.context.beginPath();
+        this.context.globalAlpha = 1;
         this.context.lineWidth = this.radius / 2;
         this.context.strokeStyle = this.color;
         this.context.moveTo(this.x + this.tilt + this.radius / 4, this.y);

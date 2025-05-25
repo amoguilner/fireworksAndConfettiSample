@@ -19,7 +19,7 @@ export class FireworksAndConfettiRenderer {
             firework.update();
             firework.draw();
 
-            if(firework.lifespan <= 0 && firework.particles.every(p => p.alpha <= 0)) {
+            if(firework.lifespan <= 0 && firework.particles.every(p => p.alpha <= 0.02)) {
                 this.fireworks.splice(index, 1);
             }
         });
